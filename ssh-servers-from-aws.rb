@@ -26,7 +26,7 @@ ssh_config = ''
 regions.each do |region|
   AWS.config access_key_id: access_key_id, secret_access_key: secret_access_key, region: region
   ec2 = AWS.ec2
-
+  
   ec2.instances.each do |instance|
     if(instance.status == :running && instance.tags['Name'])
       instance_name = instance.tags['Name'].gsub /[^a-zA-Z0-9\-_\.]/, '-'
@@ -35,7 +35,11 @@ regions.each do |region|
       ssh_config << "Host #{instance_name}\n"
       ssh_config << "  HostName #{instance.ip_address}\n"
       ssh_config << "  User #{instance_user}\n"
-      ssh_config << "  IdentityFile ~/.ssh/#{instance.key_name}.aws.pem\n"
+      if instance.key_name.end_with?('.pem')
+        ssh_config << "  IdentityFile ~/.ssh/#{instance.key_name}\n"
+      else
+        ssh_config << "  IdentityFile ~/.ssh/#{instance.key_name}.pem\n"
+      end
       ssh_config << "\n"
     end
   end
