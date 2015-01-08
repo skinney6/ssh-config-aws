@@ -1,6 +1,8 @@
 Auto-Generate SSH Config from AWS
 =================================
 
+Tailored to a specific aws environment
+
 Helper scripts to generate an `~/.ssh/config` file automatically from one or more AWS accounts.
 
 Setup
