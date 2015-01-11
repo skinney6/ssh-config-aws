@@ -7,19 +7,19 @@ Dir.chdir File.expand_path File.dirname(__FILE__)
 options = {}
 optparse = OptionParser.new do |opts|
   options[:profile] = "" 
-  opts.on( '-f', '--profile FILE', "Profile name" ) do |f| 
+  opts.on( '-f', '--profile FILE', "Profile name. This file holds the creds to query aws." ) do |f| 
     options[:profile] = f 
   end 
   options[:proxy] = false
-  opts.on('-p', '--proxy', 'SSH proxy thru jump host') do
+  opts.on('-p', '--proxy', 'Turn on proxy config generation.') do
     options[:proxy] = true
   end
   options[:jump_user] = 'ubuntu'
-  opts.on('-u', '--user USER_NAME', 'The username you log into jump with') do |username|
+  opts.on('-u', '--user USER_NAME', 'The username you log into jump with. Only required if '-p' is on.') do |username|
     options[:jump_user] = username
   end
   options[:jump_key] = 'id_rsa'
-  opts.on('-k', '--key KEY_NAME', 'The key you log into jump with') do |key|
+  opts.on('-k', '--key KEY_NAME', 'The key you log into jump with. Only required if '-p' is on.') do |key|
     options[:jump_key] = key
   end
   opts.on( '-h', '--help', 'Display this screen' ) do 
