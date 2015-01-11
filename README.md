@@ -1,5 +1,4 @@
-Auto-Generate SSH Config from AWS
-=================================
+##Auto-Generate SSH Config from AWS
 
 Tailored to a specific aws environment
 
@@ -17,8 +16,11 @@ Setup
 
 Usage
 -----
+**Run `bundle install` after cloning**
 
-**Run `bundle exec ./ssh-servers-from-aws.rb example`**
+####This will overwrite your current ~/.ssh/config. Back it up.
+
+**Run `bundle exec ./ssh-servers-from-aws.rb -f example -p -u <jump username> -k <jump key>`**
 
 Replace "example" with the name of your AWS profile. This will query your AWS account for all running servers, adding each to a file in the "ssh" folder.
 
@@ -30,8 +32,13 @@ Now you are ready to go! You can do things like:
 
 `$ ssh e[TAB]` -> auto-expands to -> `$ ssh example`
 
-Or if you have multiple servers with the same prefix,
+Or if you have multiple servers with the same prefix.
 
+To generate a config for the jump box:
+
+**Run `bundle exec ./ssh-servers-from-aws.rb -f example`**
+
+**Run `rebuild-ssh-config.sh`**
 ```
 $ ssh e[TAB][TAB]
 example-1     example-2
