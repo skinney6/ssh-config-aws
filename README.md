@@ -28,6 +28,8 @@ Replace "example" with the name of your AWS profile. This will query your AWS ac
 
 This combines all your `.sshconfig` files into the master `~/.ssh/config` file.
 
+####This config assumes all your keys are in ~/.ssh. If you have keys in subdirectories of ~/.ssh, add it to the key name.
+
 Now you are ready to go! You can do things like:
 
 `$ ssh e[TAB]` -> auto-expands to -> `$ ssh example`
