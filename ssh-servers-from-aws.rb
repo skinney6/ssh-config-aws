@@ -29,7 +29,7 @@ optparse = OptionParser.new do |opts|
 end
 
 optparse.parse! 
-puts options
+
 config = File.read("aws/#{options[:profile]}.profile")
     
 access_key_id = config.match(/AWS_ACCESS_KEY=(.+)/)[1]
