@@ -3,7 +3,9 @@
 ### Concat all the ssh config files into the main file
 ### WARNING: This will erase your current .ssh/config file! Move stuff you want to keep into an .sshconfig file in the ssh folder here.
 
-rm ~/.ssh/config
+if [ -f ~/.ssh/config ]; then
+    rm ~/.ssh/config
+fi
  
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 

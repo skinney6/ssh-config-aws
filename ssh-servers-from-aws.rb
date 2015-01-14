@@ -14,6 +14,10 @@ optparse = OptionParser.new do |opts|
   opts.on('-p', '--proxy', 'Turn on proxy config generation.') do
     options[:proxy] = true
   end
+  options[:verbose] = false
+  opts.on('-v', '--verbose', 'Turn on verbosity..') do
+    options[:verbose] = true
+  end
   options[:jump_user] = 'ubuntu'
   opts.on('-u', '--user USER_NAME', 'The username you log into jump with. Only required if \'-p\' is on.') do |username|
     options[:jump_user] = username
@@ -60,9 +64,9 @@ regions.each do |region|
         next
       else
         if instance_name =~ /twit3/
-          puts "#{instance.id}: #{instance_name} #{instance.public_ip_address} (#{instance_user})"
+          puts "#{instance.id}: #{instance_name} #{instance.public_ip_address} (#{instance_user})" if options[:verbose]
         else
-          puts "#{instance.id}: #{instance_name} #{instance.private_ip_address} (#{instance_user})"
+          puts "#{instance.id}: #{instance_name} #{instance.private_ip_address} (#{instance_user})" if options[:verbose]
         end
         ssh_config << "Host #{instance_name}\n"
         if instance_name =~ /twit3/
@@ -86,4 +90,4 @@ end
 ssh_file = "ssh/#{options[:profile]}.sshconfig"
 File.open(ssh_file, 'w') {|f| f.write(ssh_config) }
 
-puts "Complete! Now run rebuild-ssh-config.sh to update your .ssh/config file"
+puts "Complete! Now run rebuild-ssh-config.sh to update your .ssh/config file" if options[:verbose]
