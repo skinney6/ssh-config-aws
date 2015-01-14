@@ -15,11 +15,11 @@ optparse = OptionParser.new do |opts|
     options[:proxy] = true
   end
   options[:jump_user] = 'ubuntu'
-  opts.on('-u', '--user USER_NAME', 'The username you log into jump with. Only required if '-p' is on.') do |username|
+  opts.on('-u', '--user USER_NAME', 'The username you log into jump with. Only required if \'-p\' is on.') do |username|
     options[:jump_user] = username
   end
   options[:jump_key] = 'id_rsa'
-  opts.on('-k', '--key KEY_NAME', 'The key you log into jump with. Only required if '-p' is on.') do |key|
+  opts.on('-k', '--key KEY_NAME', 'The key you log into jump with. Only required if \'-p\' is on.') do |key|
     options[:jump_key] = key
   end
   opts.on( '-h', '--help', 'Display this screen' ) do 
