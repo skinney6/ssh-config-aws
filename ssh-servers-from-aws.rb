@@ -71,6 +71,8 @@ regions.each do |region|
         ssh_config << "Host #{instance_name}\n"
         if instance_name =~ /twit3/
           ssh_config << "  HostName #{instance.public_ip_address}\n"
+        elsif instance_name =~ /wordpress/
+          ssh_config << "  HostName #{instance.public_ip_address}\n"
         else
           ssh_config << "  HostName #{instance.private_ip_address}\n"
           ssh_config << "  ProxyCommand ssh jump.zenti.com -W %h:%p\n" if options[:proxy]

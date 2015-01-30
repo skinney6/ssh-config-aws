@@ -1,3 +1,6 @@
+StrictHostKeyChecking no
+UserKnownHostsFile=/dev/null
+
 Host *
   ServerAliveInterval 60
   ForwardAgent yes
